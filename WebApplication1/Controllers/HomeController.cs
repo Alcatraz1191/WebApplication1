@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebApplication1.Models;
+using WebApplication1.APIHandlerManager;
+using Newtonsoft.Json;
 
 namespace WebApplication1.Controllers
 {
@@ -21,6 +23,14 @@ namespace WebApplication1.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult ParksModel()
+        {
+            APIHandler webHandler = new APIHandler();
+            ParksModel parks = webHandler.GetParks();
+
+            return View(parks);
         }
 
         public IActionResult Privacy()
